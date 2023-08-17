@@ -1,0 +1,1011 @@
+
+    <div class="container-xxl pt-80px imgDiv loginpage">
+      <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+        Configuration
+      </h4>
+      <!-- Basic Layout -->
+      <div class="row">
+        <div class="col-xl-12">
+         
+          <div class="nav-align-top mb-4">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item">
+                <button
+                  type="button"
+                  class="nav-link active"
+                  role="tab"
+                  id="transfer"
+                  ng-click="changeActiveTab('transfer')"
+                  data-bs-toggle="tab"
+                  data-bs-target="#navs-top-home"
+                  aria-controls="navs-top-home"
+                  aria-selected="true"
+                >
+                Data Transfer
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  type="button"
+                  class="nav-link"
+                  role="tab"
+                  data-bs-toggle="tab"
+                  id="manage"
+                  ng-click="changeActiveTab('manage')"
+                  data-bs-target="#navs-top-profile"
+                  aria-controls="navs-top-profile"
+                  aria-selected="false"
+                >
+                Manage Configuration
+                </button>
+              </li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="active" id="transferTab" role="tabpanel">
+                <div class="nav-align-top mb-4">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link active"
+                          role="tab"
+                          id="mapData"
+                          ng-click="changeSubActiveTab('mapData')"
+                          data-bs-toggle="tab"
+                          data-bs-target="#dt-innertab-stepfirst"
+                          aria-controls="dt-innertab-stepfirst"
+                          aria-selected="true"
+                        >
+                        Step 1: Map Data
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          id="dataTransferMethod"
+                          ng-click="changeSubActiveTab('dataTransfer')"
+                          data-bs-toggle="tab"
+                          data-bs-target="#dt-innertab-stepsecond"
+                          aria-controls="dt-innertab-stepsecond"
+                          aria-selected="false"
+                        >
+                        Step 2: Data Transfer Method
+                        </button>
+                      </li>
+                      
+                    </ul>
+                    <div class="tab-content dtinnertabs">
+                      <div class="active" id="mapDataTab" role="tabpanel">
+                        <div class="card mb-0">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                              <h5 class="mb-0">Configure your data transfer method</h5>
+                              
+                            </div>
+                            <div class="card-body">
+                                <div class="row mt-3">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="subtitle">Organisation Name</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{orgName}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="subtitle">Subscription ID</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{orgid}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="subtitle">Is your data FHIR compliant?</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check form-check-inline mt-0">
+                                                    <input
+                                                      class="form-check-input"
+                                                      type="radio"
+                                                      name="inlineRadioOptions"
+                                                      id="inlineRadio1"
+                                                      value="option1"
+                                                      ng-click="toggleView('yes')"
+                                                    />
+                                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input
+                                                      class="form-check-input"
+                                                      type="radio"
+                                                      name="inlineRadioOptions"
+                                                      id="inlineRadio2"
+                                                      value="option2"
+                                                      ng-click="toggleView('no')"
+                                                    />
+                                                    <label class="form-check-label" for="inlineRadio2">No</label>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  class="row mt-4 border-top-grey pt-4">
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p class="subtitle">Program Type</p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <select class="form-select" id="programId" aria-label="">
+                                                    <option selected>Please Select</option>
+                                                    <option ng-repeat="item in programs"  value="{{item._id}}" >{{ item.name }}</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p class="subtitle">Source System</p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <select class="form-select" id="systemId" aria-label="">
+                                                    <option selected>Please Select</option>
+                                                    <option ng-repeat="item in sourcesystems"  value="{{item._id}}" >{{ item.name }}</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="row">
+                                          <div class="col-md-5">
+                                              <p class="subtitle">Resource Type</p>
+                                          </div>
+                                          <div class="col-md-7">
+                                              <select class="form-select" id="resourceId" aria-label="">
+                                                  <option selected>Please Select</option>
+                                                  <option ng-repeat="item in resourceTypes"  value="{{item._id}}" >{{ item.name }}</option>
+                                                
+                                                </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div id="toggleDiv" class="col-md-12 mt-5 pt-3">
+                                  
+                                    <div class="row pb-3">
+                                        <div class="col-md-5 borderrightdiv">
+                                            <div class="table-responsive text-nowrap hide">
+                                                <table class="table table-bordered">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>Standard Indicator</th>
+                                                      <th>Standard ID</th>
+                                                      <th>Enter your organisation Indicator ID <br/>(for similar indicator)
+                                                    </th>
+                                                    
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>A</td>
+                                                      <td>001</td>
+                                                      <td>
+                                                        <input type="text" class="form-control" id="" placeholder="" aria-describedby="defaultFormControlHelp">
+                                                      </td>
+                                                    </tr>
+                                                   
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                              <p class="subtitle">Select Your Mapper</p>
+                                              <p>If you can't find a relevant mapper, then please upload your Json file and we will map it accordingly</p>
+                                              <select class="form-select" id="selectMapper" aria-label="">
+                                                <option selected="" value="">Please Select</option>
+                                                <option value="dhis-fhir">DHIS - FHIR</option>
+                                              </select>
+                                             
+                                        </div>
+                                        <div class="col-md-2 px-0">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <p class="subtitle text-center">OR</p>
+                                            </div>
+                                          
+                                        </div>
+                                        </div>
+                                        <div class="col-md-5 px-4">
+                                            <a href="#" class="btn btn-primary hide">
+                                                <i class="menu-icon tf-icons bx bx-download"></i>
+                                                Download excel template</a>
+                                                <p class="subtitle mt-0 pt-0 mb-2">Upload your source file (JSON format)</p>
+                                                <div class="mt-0">
+                                                    
+                                                    <input class="form-control" type="file" id="formFile" placeholder="hi">
+                                                  </div>
+                                                  <a href="" ng-click="uploadMapper()" class="btn btn-primary mt-3">
+                                                    <i class="menu-icon tf-icons bx bx-upload"></i>
+                                                    Upload</a>
+    
+                                                    <div class="form-check mt-5 hide">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" checked="">
+                                                        <label class="form-check-label" for="defaultCheck3"> I agree that I have updated my data as per the standard indicators  </label>
+                                                      </div>
+    
+                                                     
+                                        </div>
+                                        <div class="ErrMsg" ng-show="showIncompleteErr">*Please fill all the mandatory fields!</div>
+                                     
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12 px-4 text-center mt-5">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <a href="" ng-click="addMapper()" id="addBtn" class="btn btn-primary mt-0 w-20" style="width: 20%;">
+                                              
+                                          Add</a>
+                                      </div>
+                                      
+                                  </div>
+                                  </div>
+                                  <div class="col-md-3 hide">
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                            <a href="#" class="btn btn-primary mt-0">
+                                                  
+                                              Select</a>
+                                          </div>
+                                          <div class="col-md-6">
+                                             
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              <p class="subtitle mt-5 pt-4 mb-4 border-top-grey">Added</p>
+                              <p ng-repeat="item in systemList[systemList.length - 1].mapDataConfig">
+                                <span class="subtitle">{{systemList[systemList.length - 1].mapDataConfig.indexOf(item) + 1}}. Resource Type:</span> {{item.resourceType.name}}, 
+                                <span class="subtitle m-2 me-0">Source System:</span> {{item.sourceSystem.name}},
+                                <span class="subtitle m-2 me-0">Program Type:</span> {{item.programType.name}},
+                                <span class="subtitle m-2 me-0">Selected Mapper:</span> Implio-FHIR
+                              </p>
+                              <p>
+                                <a href="" ng-click="proceed()" class="btn btn-primary mt-3">
+                                  Proceed</a>
+                              </p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="hide" id="transferMethodTab" role="tabpanel">
+                        <div class="nav-align-top mb-4">
+                            <ul class="nav nav-pills mb-0" role="tablist">
+                              <li class="nav-item">
+                                <button
+                                  type="button"
+                                  class="nav-link active"
+                                  role="tab"
+                                  id="fileUploadBtn"
+                                  ng-click="changeInnerSubActiveTab('fileUpload')"
+                                  data-bs-toggle="tab"
+                                  data-bs-target="#dtinnersecond-first"
+                                  aria-controls="dtinnersecond-first"
+                                  aria-selected="true"
+                                >
+                                File Upload
+                                </button>
+                              </li>
+                              <li class="nav-item">
+                                <button
+                                  type="button"
+                                  class="nav-link disabled"
+                                  role="tab"
+                                  id="sftpBtn"
+                                  data-bs-toggle="tab"
+                                  ng-click="changeInnerSubActiveTab('sftp')"
+                                  data-bs-target="#dtinnersecond-second"
+                                  aria-controls="dtinnersecond-second"
+                                  aria-selected="false"
+                                >
+                                SFTP
+                                </button>
+                              </li>
+                              <li class="nav-item">
+                                <button
+                                  type="button"
+                                  class="nav-link"
+                                  role="tab"
+                                  data-bs-toggle="tab"
+                                  id="apiBtn"
+                                  ng-click="changeInnerSubActiveTab('api')"
+                                  data-bs-target="#dtinnersecond-third"
+                                  aria-controls="dtinnersecond-third"
+                                  aria-selected="false"
+                                >
+                                  API
+                                </button>
+                              </li>
+                              <li class="nav-item">
+                                <button
+                                  type="button"
+                                  class="nav-link disabled"
+                                  role="tab"
+                                  data-bs-toggle="tab"
+                                  id="realTimeBtn"
+                                  ng-click="changeInnerSubActiveTab('realTime')"
+                                  data-bs-target="#dtinnersecond-fourth"
+                                  aria-controls="dtinnersecond-fourth"
+                                  aria-selected="false"
+                                >
+                                  Real-Time
+                                </button>
+                              </li>
+                             
+                            </ul>
+                            <div class="tab-content dtinnertabs">
+                              <div class="active" id="fileUploadTab" role="tabpanel">
+                                <div class="card mb-0">
+                                    
+                                    <div class="card-body">
+                                        <div class="row m-0 ">
+                                            <div class="col-lg-12">
+                                               
+                                                <p class="subtitle mt-0">Frequency of uploading data</p>
+                                                <div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-md">
+                                                         <div class="row mb-2">
+                                                            <div class="col-md-9">
+                                                                <div class="form-check mt-0">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1"> Monthly</label>
+                                                                  </div>
+                                                            </div>
+                                                           
+                                                         </div>
+                                                         <div class="row mb-2">
+                                                            <div class="col-md-12">
+                                                                <div class="form-check mt-0">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1"> Quarterly (every 3 months) </label>
+                                                                  </div>
+                                                            </div>
+                                                           
+                                                         </div>
+                
+                                                         <div class="row mb-2">
+                                                            <div class="col-md-12">
+                                                                <div class="form-check mt-0">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1"> Bi-annually (every 6 months) </label>
+                                                                  </div>
+                                                            </div>
+                                                           
+                                                         </div>
+                                                         <div class="row mb-2">
+                                                            <div class="col-md-12">
+                                                                <div class="form-check mt-0">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                    <label class="form-check-label" for="defaultCheck1"> Yearly </label>
+                                                                  </div>
+                                                            </div>
+                                                           
+                                                         </div>
+                                                         <div class="mt-3">
+                                                            <p>
+                                                                <button class="btn btn-primary text-white d-grid" type="btn">Set Configuration</button>
+                                                            </p>
+                                                         </div>
+                                                        </div>
+                                                       
+                                                      </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="hide" id="sftpTab" role="tabpanel">
+                                <div class="card mb-0">
+                                    
+                                    <div class="card-body">
+                                        <div class="row m-0 ">
+                                            <div class="col-lg-12">
+                                               
+                                                <p class="subtitle mt-0">Connect to SFTP</p>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form>
+                                                            <div class="row mb-3">
+                                                              <label class="col-sm-2 col-form-label" for="basic-default-name">Username</label>
+                                                              <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="basic-default-name" placeholder="">
+                                                              </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                              <label class="col-sm-2 col-form-label" for="basic-default-company">IP Address</label>
+                                                              <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="basic-default-company" placeholder="">
+                                                              </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label class="col-sm-2 col-form-label" for="basic-default-company">Remote Hostname</label>
+                                                                <div class="col-sm-4">
+                                                                  <input type="text" class="form-control" id="basic-default-company" placeholder="">
+                                                                </div>
+                                                              </div>
+                                                           
+                                                           
+                                                           
+                                                          
+                                                          </form>
+                                                    </div>
+                                                    <div class="col-lg-8"></div>
+                                                </div>
+                                                <div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-md">
+                                                        
+                                                         <div class="mt-3">
+                                                            <p>
+                                                                <button class="btn btn-primary text-white d-grid" type="submit">Set Configuration</button>
+                                                            </p>
+                                                         </div>
+                                                         
+                                                        </div>
+                                                       
+                                                      </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="hide" id="apiTab" role="tabpanel">
+                                <div class="card mb-0">
+                                    
+                                    <div class="card-body">
+                                        <div class="row m-0 ">
+                                            <div class="col-lg-12">
+                                              <p ng-repeat="item in systemList[systemList.length - 1].mapDataConfig">
+                                                <span class="subtitle">{{systemList[systemList.length - 1].mapDataConfig.indexOf(item) + 1}}. Resource Type:</span> {{item.resourceType.name}}, 
+                                                <span class="subtitle m-2 me-0">Source System:</span> {{item.sourceSystem.name}},
+                                                <span class="subtitle m-2 me-0">Program Type:</span> {{item.programType.name}},
+                                                <span class="subtitle m-2 me-0">Selected Mapper:</span> Implio-FHIR
+                                              </p>
+                                              <hr>
+                                               
+                                                <p class="subtitle mt-0">How often will the API be called?</p>
+                                                <div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-md">
+                                                         <div class="row mb-2">
+                                                            <div class="col-md-9">
+                                                               
+                                                                  <div class="form-check mt-3 mb-3">
+                                                                    <input
+                                                                      name="default-radio-1"
+                                                                      class="form-check-input"
+                                                                      type="radio"
+                                                                      value=""
+                                                                      id="hourly"
+                                                                    />
+                                                                    <label class="form-check-label d-flex" for="hourly"> Every 
+                                                                      <input type="number" class="form-control " id="numberOdHours" placeholder="" style="width: 50px;margin-left: 10px;margin-right:10px">
+                                                                      hours </label>
+                                                                  </div>
+                                                                  <div class="row mb-2">
+                                                                    <div class="col-md-3">
+                                                                      <div class="form-check">
+                                                                        <input
+                                                                          name="default-radio-1"
+                                                                          class="form-check-input"
+                                                                          type="radio"
+                                                                          value=""
+                                                                          id="eod"
+                                                                          checked
+                                                                        />
+                                                                        <label class="form-check-label" for="eod"> End of Day </label>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                      <div class="row mb-0">
+                                                                        <label class="col-sm-2 col-form-label" for="basic-default-name">Set Time</label>
+                                                                        <div class="col-sm-5">
+                                                                          <input type="text" class="form-control" id="setTime" placeholder="">
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                 
+                                                                  <div class="form-check">
+                                                                    <input
+                                                                      name="default-radio-1"
+                                                                      class="form-check-input"
+                                                                      type="radio"
+                                                                      value=""
+                                                                      id="weekly"
+                                                                      checked
+                                                                    />
+                                                                    <label class="form-check-label" for="weekly"> Weekly </label>
+                                                                  </div>
+                                                                  <div class="form-check mt-3">
+                                                                    <input
+                                                                      name="default-radio-1"
+                                                                      class="form-check-input"
+                                                                      type="radio"
+                                                                      value=""
+                                                                      id="monthly"
+                                                                      checked
+                                                                    />
+                                                                    <label class="form-check-label" for="monthly"> Monthly </label>
+                                                                  </div>
+                                                            </div>
+                                                           
+                                                         </div>
+                                                        
+                
+                                                    
+                                                         <div class="row mt-4">
+                                                            <div class="col-lg-6">
+                                                                <form>
+                                                                    <div class="row mb-3">
+                                                                      <div class="col-sm-2 d-flex align-items-center">
+                                                                        <p class="subtitle mt-0 mb-0">API/URI</p>
+                                                                      </div>
+                                                                      <div class="col-sm-6">
+                                                                        <input type="text" ng-model="url" name="url" class="form-control" id="basic-default-name" placeholder="">
+                                                                      </div>
+                                                                    </div>
+                                                                   
+                                                                  </form>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                              <form>
+                                                                  <div class="row mb-3">
+                                                                    <div class="col-sm-2 d-flex align-items-center">
+                                                                      <p class="subtitle mt-0 mb-0">API Name</p>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                      <input type="text" ng-model="apiName" name="apiName" class="form-control" id="apiName" placeholder="">
+                                                                    </div>
+                                                                  </div>
+                                                                 
+                                                                </form>
+                                                          </div>
+                                                            
+                                                            
+                                                          
+                                                        </div>
+                                                        <div class="nav-align-top mb-4 mt-4 border-top-grey pt-4 secondleveltabsholder">
+                                                            <ul class="nav nav-pills mb-4" role="tablist">
+                                                              <li class="nav-item">
+                                                                <button
+                                                                  type="button"
+                                                                  class="nav-link active"
+                                                                  role="tab"
+                                                                  id="params"
+                                                                  ng-click="changeAPIActiveTab('params')"
+                                                                  data-bs-toggle="tab"
+                                                                  data-bs-target="#apisecondlevel-first"
+                                                                  aria-controls="apisecondlevel-first"
+                                                                  aria-selected="true"
+                                                                >
+                                                                Params
+                                                                </button>
+                                                              </li>
+                                                              <li class="nav-item">
+                                                                <button
+                                                                  type="button"
+                                                                  class="nav-link"
+                                                                  role="tab"
+                                                                  id="auth"
+                                                                  ng-click="changeAPIActiveTab('auth')"
+                                                                  data-bs-toggle="tab"
+                                                                  data-bs-target="#apisecondlevel-second"
+                                                                  aria-controls="apisecondlevel-second"
+                                                                  aria-selected="false"
+                                                                >
+                                                                Authorization
+                                                                </button>
+                                                              </li>
+                                                              <li class="nav-item">
+                                                                <button
+                                                                  type="button"
+                                                                  class="nav-link hide"
+                                                                  role="tab"
+                                                                  id="headers"
+                                                                  ng-click="changeAPIActiveTab('headers')"
+                                                                  data-bs-toggle="tab"
+                                                                  data-bs-target="#apisecondlevel-third"
+                                                                  aria-controls="apisecondlevel-third"
+                                                                  aria-selected="false"
+                                                                >
+                                                                Headers
+                                                                </button>
+                                                              </li>
+                                                              <li class="nav-item">
+                                                                <button
+                                                                  type="button"
+                                                                  class="nav-link hide"
+                                                                  role="tab"
+                                                                  id="body1"
+                                                                  ng-click="changeAPIActiveTab('body')"
+                                                                  data-bs-toggle="tab"
+                                                                  data-bs-target="#apisecondlevel-fourth"
+                                                                  aria-controls="apisecondlevel-fourth"
+                                                                  aria-selected="false"
+                                                                >
+                                                                  Body
+                                                                </button>
+                                                              </li>
+                                                            </ul>
+                                                            <div class="tab-content mt-0 border-grey">
+                                                              <div class="active" id="paramsTab" role="tabpanel">
+                                                                <p class="subtitle mt-0 mb-0">Query Params</p>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname">Full Key</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname"> Value</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname"> Description</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="hide" id="authTab" role="tabpanel">
+                                                                <div class="row mt-0">
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname"> Authorization</label>
+                                                                            <select id="defaultSelect" class="form-select">
+                                                                                <option>Default select</option>
+                                                                                <option value="Basic">Basic</option>
+                                                                              </select>
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" ng-model="username" name="username" for="basic-default-fullname"> Username</label>
+                                                                            <input type="text" ng-model="username" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" ng-model="password" name="password"  for="basic-default-fullname"> Password</label>
+                                                                            <input type="text" ng-model="password" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="hide" id="headersTab" role="tabpanel">
+                                                                <p class="subtitle mt-0 mb-0">Header</p>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-md-3">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname">Full Key</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname"> Value</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="basic-default-fullname"> Description</label>
+                                                                            <input type="text" class="form-control" id="basic-default-fullname" placeholder="">
+                                                                          </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 d-flex align-items-center">
+                                                                        <a href="javascript:void(0)">
+                                                                            
+                                                                            <i class="menu-icon tf-icons bx bx-plus-circle mt-3"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="hide" id="bodyTab" role="tabpanel">
+                                                                <p>
+                                                                    {
+                                                                        "username" :
+                                                                        "password" :
+                                                                        "refresh" :
+                                                                        "provider"
+                                                                        }
+                                                                </p>
+                                                               
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-4 mb-4 border-top-grey pt-4">
+                                                            <div class="row mb-2">
+                                                                <div class="col-md-9">
+                                                                    <div class="form-check mt-0">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                        <label class="form-check-label" for="defaultCheck1"> Do you want to make your data available in real-time? (Optional)</label>
+                                                                      </div>
+                                                                </div>
+                                                               
+                                                             </div>
+                                                             <p class="subtitle mt-3">Select your event</p>
+                                                             <div class="row mb-2">
+                                                                <div class="col-md-9">
+                                                                    <div class="form-check mt-0">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                        <label class="form-check-label" for="defaultCheck1"> Time Stamp</label>
+                                                                      </div>
+                                                                </div>
+                                                               
+                                                             </div>
+                                                             <div class="row mb-2">
+                                                                <div class="col-md-9">
+                                                                    <div class="form-check mt-0">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                                        <label class="form-check-label" for="defaultCheck1"> Increment Object ID</label>
+                                                                      </div>
+                                                                </div>
+                                                               
+                                                             </div>
+                                                          </div>
+                                                         <div class="mt-3">
+                                                          <div class="ErrMsg" ng-show="showConfigIncompleteErr">*Please fill all the mandatory fields!</div>
+                                                            <p>
+                                                                <button class="btn btn-primary text-white d-grid" type="submit" ng-click="addNewUrl()">Set Configuration</button>
+                                                            </p>
+                                                         </div>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="hide" id="realTimeTab" role="tabpanel">
+                                <div class="card mb-0">
+                                    
+                                    <div class="card-body">
+                                        <div class="row m-0 ">
+                                            <div class="col-lg-12">
+                                               
+                                                <p class="subtitle mt-0">Real Time Configuration</p>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form>
+                                                            <div class="row mb-3">
+                                                              <label class="col-sm-2 col-form-label" for="basic-default-name">API/URI</label>
+                                                              <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="basic-default-name" placeholder="">
+                                                              </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                              <label class="col-sm-2 col-form-label" for="basic-default-company">Configuration Key</label>
+                                                              <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="basic-default-company" placeholder="">
+                                                              </div>
+                                                            </div>
+                                                           
+                                                           
+                                                           
+                                                           
+                                                          
+                                                          </form>
+                                                    </div>
+                                                    <div class="col-lg-8"></div>
+                                                </div>
+                                                <div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-md">
+                                                        
+                                                         <div class="mt-3">
+                                                            <p>
+                                                                <button class="btn btn-primary text-white" type="submit">Set Configuration</button>
+                                                            </p>
+                                                         </div>
+                                                         
+                                                        </div>
+                                                       
+                                                      </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    
+                                    </div>
+                                  </div>
+                              </div>
+                             
+                            </div>
+                          </div>
+                      </div>
+                    
+                    </div>
+                  </div>
+              
+                
+              </div>
+              <div class="hide" id="manageTab" role="tabpanel">
+                <div class="card mb-0">
+                   
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-bordered">
+                                      <thead>
+                                        <tr>
+                                            <th>#</th>
+                                          <th>Name</th>
+                                          <th>Program</th>
+                                          <th>Source</th>
+                                          <th>Resource</th>
+                                        <th>Actions</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr ng-repeat="item in urls" (click)="toggleRow(item)">
+                                          <td>{{ urls.indexOf(item) + 1 }}</td>
+                                          <td>{{item.name || '-'}}</td>
+                                          <td>
+                                            {{item.programType.name || '-'}}
+                                          </td>
+                                          <td>{{item.sourceSystem.name || '-'}}</td>
+                                          <td>{{item.resourceType.name || '-'}}</td>
+                                          <td>
+                                            <a class="btn btn-primary text-white" href="javascript:void(0);" ng-click="runURL(item)"><i class="bx bx-trash me-1"></i> Run</a>
+                                            <a class="btn btn-primary me-2 text-white" href="" ng-click="viewUser(item._id)"><i class="bx bx-edit me-1"></i> Manage</a> 
+                                            <a class="btn btn-primary text-white" href="" ng-click="deleteAPI(item._id)"><i class="bx bx-trash me-1"></i> Delete</a>
+                                          </td>
+                                        </tr>
+                                          <tr>
+                                              <ng-container *ngIf="isExpanded">
+                                                <td colspan="6">
+                                                  <div class="container">
+                                                    <div class="accordion" id="accordionExample">
+                                                    <div class="steps">
+                                                        <progress id="progress" value=0 max=100 ></progress>
+                                                        <div class="step-item">
+                                                            <button class="step-button text-center" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                1
+                                                            </button>
+                                                            <div class="step-title">
+                                                                Data Upload Initiated
+                                                            </div>
+                                                        </div>
+                                                        <div class="step-item">
+                                                            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                2
+                                                            </button>
+                                                            <div class="step-title">
+                                                                Data Uploaded
+                                                            </div>
+                                                        </div>
+                                                        <div class="step-item">
+                                                            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                3
+                                                            </button>
+                                                            <div class="step-title">
+                                                                FHIR Conversion
+                                                            </div>
+                                                        </div>
+                                                        <div class="step-item">
+                                                            <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                                4
+                                                            </button>
+                                                            <div class="step-title">
+                                                                ETL Completed
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                </td>
+                                              </ng-container>
+                                          </tr>
+                                    
+                                      </tbody>
+                                    </table>
+                                  </div>
+                            </div>
+                          
+                        </div>
+                    
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{alert.msg}}
+            </div>
+              
+            </div>
+          </div>
+        </div>
+
+      
+       
+      </div>
+     
+      
+    </div>
+
+    <!-- / Content -->
+
+   
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+

@@ -1,0 +1,409 @@
+
+<div class="container-xxl pt-80px imgDiv loginpage">
+  <div ng-show="isLoading" class="loader"></div>
+  <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+     Registration
+  </h4>
+  <!-- Basic Layout -->
+  <div class="row">
+    <div class="col-xl">
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Personal Details</h5>
+          
+        </div>
+        <div class="card-body">
+          <form name="forms.form1" id="form1">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" ng-model="orgName" name="orgName" for="orgname">Organization Name<sup>*</sup></label>
+                  <input type="text" ng-model="orgName" class="form-control" id="orgname" placeholder="" />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" ng-model="parentOrgName" name='parentOrgName' for="parentorgname">Parent Organisation Name (Optional)</label>
+                  <input type="text" ng-model="parentOrgName" class="form-control" id="parentorgname" placeholder="" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" ng-model="firstName" name='firstName' for="firstname">First Name<sup>*</sup></label>
+                  <input type="text" ng-model="firstName" class="form-control" id="firstname" placeholder="" />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" ng-model="lastName" name="lastName" for ="lastname">Last Name<sup>*</sup></label>
+                  <input type="text" ng-model="lastName" class="form-control" id="lastname" placeholder="" />
+                </div>
+              </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label" name="userEmail" ng-model="userEmail"  for="email">Email<sup>*</sup></label>
+                    <div class="input-group input-group-merge">
+                      <input
+                        type="text"
+                        id="email"
+                        ng-model="userEmail"
+                        class="form-control"
+                        placeholder=""
+                        aria-label=""
+                        aria-describedby="email"
+                      />
+                     
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label" ng-model="orgType" name="orgType" for="orgtype">Organization Type<sup>*</sup></label>
+                    <select class="form-select" ng-model="orgType" id="orgtype" aria-label="orgtype">
+                      <option selected>Please Select</option>
+                      <option value="Hospital">Hospital</option>
+                      <option value="Clinic">Clinic</option>
+                      <option value="PHC">PHC</option>
+                      <option value="CHC">CHC</option>
+                      <option value="Sub-Centre">Sub-Centre</option>
+                      <option value="Laboratory">Laboratory</option>
+                      <option value="Pharmacy">Pharmacy</option>
+                    </select>
+                   
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label" ng-model="department" name="department" for="department">Department (optional)</label>
+                      <input
+                        type="text"
+                        ng-model="department"
+                        id="department"
+                        class="form-control"
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label" ng-model="address" name="address" for="address">Address<sup>*</sup></label>
+                      <textarea
+                        id="address"
+                        ng-model="address"
+                        class="form-control"
+                        placeholder=""
+                      ></textarea>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label" ng-model="country" name="country" for="country" >Country<sup>*</sup></label>
+                        <select class="form-select" ng-model="country" id="country" aria-label="country" ng-change="onCountryChange()">
+                          <option selected>Please Select</option>
+                          <option ng-repeat="item in countries"  value="{{item}}" >{{ item.name }}</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="mb-3">
+                        <label class="form-label" ng-model="state" name="state" for="state">Province<sup>*</sup></label>
+                        <select class="form-select" ng-model="state" id="state" aria-label="state" ng-change="onProvinceChange()">
+                          <option selected>Please Select</option>
+                          <option ng-repeat="item in provinces"  value="{{item}}" >{{ item.name }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                     
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label" ng-model="city" name="city" for="city">City<sup>*</sup></label>
+                          <select class="form-select" ng-model="city" id="city" aria-label="city">
+                            <option selected>Please Select</option>
+                            <option ng-repeat="item in districts"  value="{{item}}" >{{ item.name }}</option>
+                          </select>
+                      </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label" ng-model="zipcode" name="zipcode" for="zipcode">Zipcode</label>
+                          <div class="input-group input-group-merge">
+                            <input
+                              type="text"
+                              id="zipcode"
+                              ng-model="zipcode"
+                              class="form-control"
+                              placeholder=""
+                              aria-label=""
+                              aria-describedby="zipcode"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="mb-3">
+                            <label class="form-label" ng-model="operationalStatus" name="operationalStatus" for="country">Operational Status<sup>*</sup></label>
+                            <select class="form-select" ng-model="operationalStatus" id="country" aria-label="country">
+                              <option selected>Please Select</option>
+                              <option value="Active">Active</option>
+                              <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        </div>
+    
+                      
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="mb-3">
+                              <label class="form-label" ng-model="facilityIdentifier" name="facilityIdentifier" for="city">Organization Registration ID</label>
+                              <div class="input-group input-group-merge">
+                                <input
+                                  type="text"
+                                  id="city"
+                                  ng-model="facilityIdentifier"
+                                  class="form-control"
+                                  placeholder=""
+                                  aria-label=""
+                                  aria-describedby="city"
+                                />
+                               
+                              </div>
+                          </div>
+                          </div>
+
+
+                      <div class="col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label" ng-model="regDate" name="regDate" for="regDate">Registration Date</label>
+                          <div class="input-group input-group-merge">
+                            <input
+                              type="text"
+                              id="regDate"
+                              ng-model="regDate"
+                              class="form-control"
+                              placeholder=""
+                              aria-label=""
+                              aria-describedby="zipcode"
+                            />
+                           
+                          </div>
+                         
+                        </div>
+                      </div>
+      
+                          </div>
+           
+           
+           
+            
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row mt-4">
+    <div class="col-xl">
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Purpose Details</h5>
+          
+        </div>
+        <div class="card-body">
+          <form name="forms.form2" id="form2">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="mb-3">
+                  <label class="form-label" ng-model="purpose" name="purpose" for="purposeofuse">Purpose of Use</label>
+                  <textarea
+                  id="purposeofuse"
+                  ng-model="purpose"
+                  class="form-control"
+                  placeholder=""
+                ></textarea>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="targetprog" ng-model="target" name="target">Target Program<sup>*</sup></label>
+                  <select class="form-select" ng-model="target" id="targetprog" aria-label="targetprog">
+                    <option selected>Please Select</option>
+                    <option ng-repeat="item in programs"  value="{{item._id}}" >{{ item.name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="otherprog">If Other</label>
+                  <input type="text" class="form-control" id="otherprog" placeholder="" />
+                </div>
+              </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="subscriptionfor" ng-model="subscriptionFor" name="subscriptionFor">Subscription for<sup>*</sup></label>
+                    <select class="form-select" ng-model="subscriptionFor" id="subscriptionfor" aria-label="subscriptionfor">
+                      <option selected>Please Select</option>
+                      <option ng-repeat="item in subscriptionFor"  value="{{item._id}}" >{{ item.name }}</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="mb-3">
+                    <label class="form-label" for="resourcetype" ng-model="resourceType" name="resourceType">Resource Type<sup>*</sup></label>
+                    <select class="form-select" ng-model="resourceType"id="resourcetype" aria-label="resourcetype">
+                      <option selected>Please Select</option>
+                      <option ng-repeat="item in resources"  value="{{item._id}}" >{{ item.name }}</option>
+                    </select>
+                   
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                  
+                  <div class="col-lg-12">
+                    <div class="mb-3">
+                      <label class="form-label" for="addinfo" ng-model="additionalInfo" name="additionalInfo">Any Additional Information (optional)</label>
+                      <textarea
+                        id="addinfo"
+                        ng-model="additionalInfo"
+                        class="form-control"
+                        placeholder=""
+                      ></textarea>
+                    </div>
+                  </div>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row mt-4">
+    <div class="col-xl">
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Service Details</h5>
+          
+        </div>
+        <div class="card-body">
+          <form name="forms.form3" id="form3">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="purposeofuse" ng-model="typeOfServices" name="typeOfServices">Type of Services offered</label>
+                  <textarea
+                  id="purposeofuse"
+                  ng-model="typeOfServices"
+                  class="form-control"
+                  placeholder=""
+                ></textarea>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="purposeofuse" ng-model="humanResource" name="humanResource">Human resource for health, numbers by cadre</label>
+                  <textarea
+                  id="purposeofuse"
+                  ng-model="humanResource"
+                  class="form-control"
+                  placeholder=""
+                ></textarea>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="otherprog" ng-model="openingTime" name="openingTime">Opening Time</label>
+                  <input type="text" class="form-control" ng-model="openingTime" id="otherprog" placeholder="" />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label class="form-label" for="otherprog" ng-model="closingTime" name="closingTime">Closing Time</label>
+                  <input type="text" class="form-control" ng-model="closingTime" id="otherprog" placeholder="" />
+                </div>
+              </div>
+              </div>
+
+            
+
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="addinfo" ng-model="indentifiers" name="indentifiers">Common and Mapped Identifiers per Location</label>
+                      <textarea
+                        id="addinfo"
+                        ng-model="indentifiers"
+                        class="form-control"
+                        placeholder=""
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="addinfo" ng-model="details" name="details">Details on Infrastructure - Power, Water, etc.</label>
+                      <textarea
+                        id="addinfo"
+                        ng-model="details"
+                        class="form-control"
+                        placeholder=""
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row mt-0 marginBottom">
+    <div class="col-xl">
+    <div class="form-check mt-3 mb-3">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+      <label class="form-check-label color-white" for="defaultCheck1"> I confirm that the information shared above is true for my organization. </label>
+    </div>
+    <div class="form-check mt-3 mb-3">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+      <label class="form-check-label color-white" for="defaultCheck1"> I confirm that I will not misuse the information being shared with my organization. </label>
+    </div>
+    <div class="ErrMsg" ng-show="showIncompleteErr">*Please fill all the mandatory fields!</div>
+    <div class="ErrMsg" ng-show="showCheckboxErr">*Please agree to the terms and conditions to place a registration request!</div>
+    <div href="landing.html" class="btn btn-primary text-white disabled" id="submitBtn" ng-click="submitForms()">Apply</div>
+  </div>
+    <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{alert.msg}}
+  </div>
+  </div>
+</div>

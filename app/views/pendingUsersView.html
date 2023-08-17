@@ -1,0 +1,276 @@
+<div class="container-xxl pt-80px imgDiv loginpage">
+    <div class="confirmModal hide" id="confirmPopup">
+        <div class="card" style="width: 500px;">
+        <div class="modal-header">
+          <h3 class="modal-title" style="font-size: 18px;">Cancel User Subscription</h3>
+      </div>
+      <div class="modal-body" style="font-size: 16px;">
+        <p>
+          Please provide a reason for cancelling subscription.
+        </p>
+        <textarea id="reasonTextBox" style="width: 400px; font-size: 14px; padding: 8px;"></textarea>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="cancel('close')">close</button>
+          <button class="btn btn-warning" ng-click="cancel('')">Cancel</button>
+      </div>
+      </div>
+      </div>
+    <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+      {{tabName}}
+    </h4>
+    <!-- Basic Layout -->
+    <div class="row">
+      <div class="col-xl">
+        <div class="card mb-4">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <a href="hierequest.html">
+              <i class="menu-icon tf-icons bx bx-chevron-left-circle color-green"></i> 
+          </a>
+              Organization Details
+          </h5>
+          </div>
+          <div class="card-body scrollable">
+              <div class="row mt-2">
+                  <div class="col-md-2">
+                      <p class="subtitle">Organization Name</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].orgName}}</p>
+                  </div>
+
+                  <div class="col-md-2">
+                    <p class="subtitle">Parent Organization Name</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].parentOrg}}</p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-2">
+                      <p class="subtitle">Registration ID</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0]._id}}</p>
+                  </div>
+
+                  <div class="col-md-2">
+                    <p class="subtitle">Organization Type</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].orgType}}</p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-2">
+                      <p class="subtitle">Email</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].email}}</p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="subtitle">Address</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].address}}</p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-2">
+                      <p class="subtitle">First Name</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].firstname}}</p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="subtitle">Last Name</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].surname}}</p>
+                </div>
+              </div>
+              <div class="row mt-2">
+                  
+              </div>
+              <div class="row mt-2">
+                  <div class="col-md-2">
+                      <p class="subtitle">City</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].city}}</p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="subtitle">Province</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].state}}</p>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-2">
+                    <p class="subtitle">Country</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].country}}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="subtitle">Zipcode</p>
+              </div>
+              <div class="col-md-4">
+                  <p>{{userInfo[0].zipcode}}</p>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-2">
+                    <p class="subtitle">operational Status</p>
+                </div>
+                <div class="col-md-4">
+                    <p>{{userInfo[0].operationalStatus}}</p>
+                </div>
+                <div class="col-md-2">
+                  <p class="subtitle">Organisation Registration ID</p>
+              </div>
+              <div class="col-md-4">
+                  <p>{{userInfo[0].facilityIdentifier}}</p>
+              </div>
+            </div>
+
+            
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Registration Date</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].regDate}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">Purpose of Use</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].purpose}}</p>
+                  </div>
+                </div>
+            
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Target Program</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].target.name}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">Subscription For</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{ userInfo[0].subscriptionFor[0].for.name || '-' }}</p>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Resource Type</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].resourceType.name}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">Additional Info</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].additionalInfo}}</p>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Types of services offered</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].typeOfServices}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">Human resources for health</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].humanResource}}</p>
+                  </div>
+                </div> 
+
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Opening Time</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].openingTime}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">Closing Time</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].closingTime}}</p>
+                  </div>
+                </div> 
+
+                <div class="row mt-2">
+                    <div class="col-md-2">
+                        <p class="subtitle">Common and Mapped Identifiers</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].indentifiers}}</p>
+                    </div>
+                    <div class="col-md-2">
+                      <p class="subtitle">details of Infrastructure</p>
+                  </div>
+                  <div class="col-md-4">
+                      <p>{{userInfo[0].details}}</p>
+                  </div>
+                </div> 
+            
+          </div>
+          <div class="row mt-2 p-2">
+            <div class="col-md-12">
+                <button type="button" id="info" class="btn btn-secondary me-2" ng-click="requestForMoreInfo()">Request for Info</button>
+                <button type="button" id="approve" class="btn btn-primary me-2 text-white" ng-click="acceptReject(userInfo[0]._id, 'accept')">Approve</button>
+                <button type="button" id="reject" class="btn btn-danger" ng-click="acceptReject(userInfo[0]._id, 'reject')">Reject</button>
+            <button type="button" id="cancel" class="btn btn-danger" ng-click="confirmDelete()">Cancel</button>
+            <button type="button" id="reinstate" class="btn btn-danger" ng-click="acceptCancelled(userInfo[0]._id)">Reinstate</button>
+            </div>
+        </div>
+        <div class="row mt-2 p-3"  ng-show="showRequestForInfo" id="askForInfoDiv">
+          <div class="infoContainer">
+            <div class="col-lg-4 p-2">
+              <div class="mb-3">
+                <label class="form-label" for="fieldName1" ng-model="fieldName1" name="fieldName1">Field Name<sup>*</sup></label>
+                <select class="form-select" ng-model="fieldName" id="fieldName1" aria-label="fieldName">
+                  <option selected>Please Select</option>
+                  <option ng-repeat="item in requestforInfoArr"  value="{{item.value}}" >{{ item.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4 p-2">
+              <div class="mb-3">
+                <label class="form-label" for="Desc1">Description</label>
+                <input type="text" class="form-control" id="Desc1" placeholder="" />
+              </div>
+            </div>
+            <div class="col-lg-2 p-2">
+                <div class="mt-4">
+                    <button type="button" id="approve" class="btn btn-primary me-2 text-white"  ng-click="addRow()">Add</button>
+                </div>
+              </div>
+        </div>
+       
+        </div>
+        <div class="col-lg-4 p-2">
+            <button type="button" id="approve" class="btn btn-primary me-2 text-white" ng-show="showRequestForInfo" ng-click="sendRequestForInfo()">Send</button>   
+        </div>
+      </div>
+      <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{alert.msg}}
+    </div>
+     
+    </div>
+  </div>

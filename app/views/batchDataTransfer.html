@@ -1,0 +1,529 @@
+<div class="container-xxl pt-80px imgDiv loginpage">
+    <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+     Batch Data Transfer
+    </h4>
+    <!-- Basic Layout -->
+    <div class="row">
+      <div class="col-xl-12">
+       
+        <div class="nav-align-top mb-4">
+          <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item">
+                  <button
+                    type="button"
+                    class="nav-link active"
+                    role="tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#navs-top-profile"
+                    aria-controls="navs-top-profile"
+                    aria-selected="false"
+                  >
+                 File Upload
+                  </button>
+                </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link hide"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#navs-top-home"
+                aria-controls="navs-top-home"
+                aria-selected="true"
+              >
+               Transfer Logs
+              </button>
+            </li>
+           
+            
+          </ul>
+          <div class="tab-content">
+              <div class="active" id="navs-top-profile" role="tabpanel">
+                  <div class="card mb-0">
+                      <div class="card-header d-flex flex-column">
+                        <h5 class="mb-2">File Upload</h5>
+                        <h6>Kindly ensure to configure your data transfer before you upload the file here</h6>
+                        
+                      </div>
+                      <div class="card-body">
+                          
+                          <div class="row mt-3">
+                              <div class="col-md-4">
+                                  <div class="row">
+                                      <div class="col-md-6 d-flex align-items-center">
+                                          <p class="subtitle mb-0">Program Type</p>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-select" id="programId" aria-label="">
+                                          <option selected="">Please Select</option>
+                                          <option ng-repeat="item in programs"  value="{{item._id}}" >{{ item.name }}</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="row">
+                                      <div class="col-md-6 d-flex align-items-center">
+                                          <p class="subtitle mb-0">Resource Type</p>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-select" id="resourceId" aria-label="">
+                                          <option selected="">Please Select</option>
+                                          <option ng-repeat="item in resourceTypes"  value="{{item._id}}" >{{ item.name }}</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <p class="subtitle mb-0">Source Systems</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <select class="form-select" id="systemId" aria-label="">
+                                        <option selected="">Please Select</option>
+                                        <option ng-repeat="item in sourcesystems"  value="{{item._id}}" >{{ item.name }}</option>
+                                      </select>
+                                    </div>
+                                </div>
+                            </div>
+                              
+                          </div>
+                          <div class="subtitle mt-5 pt-4 mb-4 border-top-grey"></div>
+                          <div class="row">
+                              <div class="">
+                                  <p class="subtitle">Select file to upload</p>
+                                  
+
+                                      <div class="mt-2">
+                                          
+                                          <input class="form-control" type="file" id="formFile" placeholder="hi">
+                                          <p><small>File format supported: XLSX</small></p>
+                                        </div>
+                                        <a href="" class="btn btn-primary mt-1" ng-click="uploadFile()">
+                                          <i class="menu-icon tf-icons bx bx-upload"></i>
+                                          Upload</a>
+
+                                          
+
+                                           
+                              </div>
+                              
+                             
+                          </div>
+                          <div class="subtitle mt-5 pt-4 mb-4 border-top-grey"></div>
+                          <div>
+                              <p class="subtitle mb-5">Process Update</p>
+                          </div>
+                          <div>
+                              <div class="container">
+                                  <div class="accordion" id="accordionExample">
+                                  <div class="steps">
+                                      <progress id="progress" value=0 max=100 ></progress>
+                                      <div class="step-item">
+                                          <button class="step-button text-center" type="button" data-bs-toggle="collapse"
+                                              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                              1
+                                          </button>
+                                          <div class="step-title">
+                                              Data Upload Initiated
+                                          </div>
+                                      </div>
+                                      <div class="step-item">
+                                          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                              2
+                                          </button>
+                                          <div class="step-title">
+                                              Data Uploaded
+                                          </div>
+                                      </div>
+                                      <div class="step-item">
+                                          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                              3
+                                          </button>
+                                          <div class="step-title">
+                                              FHIR Conversion
+                                          </div>
+                                      </div>
+                                      <div class="step-item">
+                                          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                                              data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                              4
+                                          </button>
+                                          <div class="step-title">
+                                              ETL Completed
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="card">
+                                      <div  id="headingOne">
+                                      </div>
+                                  
+                                    
+                                  </div>
+                                  <div class="card">
+                                      <div  id="headingTwo">
+                                  
+                                      </div>
+                                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                          <div class="card-body">
+                                              your content goes here...
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div  id="headingThree">
+                                  
+                                      </div>
+                                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                          data-bs-parent="#accordionExample">
+                                          <div class="card-body">
+                                              your content goes here...
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="card">
+                                      <div  id="headingFour">
+                                  
+                                      </div>
+                                      <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                          data-bs-parent="#accordionExample">
+                                          <div class="card-body">
+                                              your content goes here...
+                                          </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                                  </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            <div class="tab-pane fade " id="navs-top-home" role="tabpanel">
+              <div class="nav-align-top mb-4">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <button
+                        type="button"
+                        class="nav-link active"
+                        role="tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#dt-innertab-stepfirst"
+                        aria-controls="dt-innertab-stepfirst"
+                        aria-selected="true"
+                      >
+                      Error Logs
+                      </button>
+                    </li>
+                    <li class="nav-item">
+                      <button
+                        type="button"
+                        class="nav-link"
+                        role="tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#dt-innertab-stepsecond"
+                        aria-controls="dt-innertab-stepsecond"
+                        aria-selected="false"
+                      >
+                      Past Uploads
+                      </button>
+                    </li>
+                    
+                  </ul>
+                  <div class="tab-content dtinnertabs">
+                    <div class="tab-pane fade show active" id="dt-innertab-stepfirst" role="tabpanel">
+                      <div class="card mb-0">
+                          <div class="card-header d-flex justify-content-between align-items-center">
+                              <div class="input-group input-group-merge w-25 ms-auto">
+                                  <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                  <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                                </div>
+                            
+                          </div>
+                          <div class="card-body">
+                              <div class="row mt-0">
+                                  <div class="col-lg-12">
+                                      <div class="table-responsive text-nowrap">
+                                          <table class="table table-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th>#</th>
+                                                <th>File <br/>Name</th>
+                                                <th>File <br/>Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Resource <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Program <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Source</th>
+                                                <th>No. of <br/>Records</th>
+                                                <th>Uploaded<br/> by <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>User<br/> Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Last<br/> Uploaded <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Status</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>TB</td>
+                                                <td>JSON</td>
+                                                <td>Indicator</td>
+                                                <td>TB</td>
+                                                <td>HMIS</td>
+                                                <td>30</td>
+                                                <td>John Doe</td>
+                                                <td>Data Transferror</td>
+                                                <td>May 5,2023</td>
+                                                <td><a href="#" class="text-decoration-underline color-red"  data-bs-toggle="modal"
+                                                  data-bs-target="#modalCenter">Failed</a></td>
+                                              </tr>
+      
+                                              <tr>
+                                                  <td>2</td>
+                                                  <td>FP</td>
+                                                  <td>JSON</td>
+                                                  <td>Patient</td>
+                                                  <td>Family Planning</td>
+                                                  <td>HMIS</td>
+                                                  <td>20</td>
+                                                  <td>John Doe</td>
+                                                  <td>Data Transferror</td>
+                                                  <td>April 5,2023</td>
+                                                  <td><a href="#" class="text-decoration-underline color-red">Failed</a></td>
+                                                </tr>
+      
+                                                <tr>
+                                                  <td>3</td>
+                                                  <td>AIDS</td>
+                                                  <td>JSON</td>
+                                                  <td>Patient</td>
+                                                  <td>AIDS</td>
+                                                  <td>LMIS</td>
+                                                  <td>50</td>
+                                                  <td>John Doe</td>
+                                                  <td>Data Transferror</td>
+                                                  <td>Mar 5,2023</td>
+                                                  <td><a href="#" class="text-decoration-underline color-red">Failed</a></td>
+                                                </tr>
+                                             
+                                            </tbody>
+                                          </table>
+                                          <!-- Modal -->
+                      <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">TB</h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="row mb-3 col-md-8">
+                                      <div class="col-md-4">
+                                          <p class="subtitle mb-0">Total Records: <span class="font-normal">40</span></p>
+                                      </div>
+                                      <div class="col-md-4">
+                                          <p class="subtitle mb-0 color-green">Success: <span class="font-normal color-black">39</span></p>
+                                      </div>
+                                      <div class="col-md-4">
+                                          <p class="subtitle mb-0 color-red">Failed: <span class="font-normal color-black">1</span></p>
+                                      </div>
+                                  </div>
+                                  <div class="table-responsive text-nowrap">
+                                      <table class="table table-bordered">
+                                        <thead>
+                                          <tr>
+                                            <th></th>
+                                            <th>Indicator 1</th>
+                                            <th>Indicator 2</th>
+                                            <th>Indicator 3</th>
+                                            <th>Indicator 4</th>
+                                          <th>Status</th>
+                                          <th>Reason</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                              <td>State 1</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="color-green">Success</td>
+                                            <td></td>
+                                           
+                                          </tr>
+                                          <tr>
+                                              <td>State 2</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="color-green">Success</td>
+                                            <td></td>
+                                           
+                                          </tr>
+                                          <tr>
+                                              <td>State 3</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="color-green">Success</td>
+                                            <td></td>
+                                           
+                                          </tr>
+                                          <tr>
+                                              <td>State 4</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="color-red">Failed</td>
+                                            <td class="color-red">Record 3: Incorrect format - String</td>
+                                           
+                                          </tr>
+                                          <tr>
+                                              <td>State 5</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td>33</td>
+                                            <td class="color-green">Success</td>
+                                            <td></td>
+                                           
+                                          </tr>
+                                         
+                                         
+                                         
+                                        </tbody>
+                                      </table>
+                                    </div>
+                               
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                                        </div>
+                                  </div>
+                              </div>
+                             
+                             
+                           
+                          </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="dt-innertab-stepsecond" role="tabpanel">
+                      <div class="card mb-0">
+                          <div class="card-header d-flex justify-content-between align-items-center">
+                              <div class="input-group input-group-merge w-25 ms-auto">
+                                  <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                                  <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                                </div>
+                            
+                          </div>
+                          <div class="card-body">
+                              <div class="row mt-0">
+                                  <div class="col-lg-12">
+                                      <div class="table-responsive text-nowrap">
+                                          <table class="table table-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th>#</th>
+                                                <th>File <br/>Name</th>
+                                                <th>File <br/>Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Resource <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Program <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Source</th>
+                                                <th>No. of <br/>Records</th>
+                                                <th>Uploaded<br/> by <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>User<br/> Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Last<br/> Uploaded <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                                <th>Status</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>TB</td>
+                                                <td>JSON</td>
+                                                <td>Indicator</td>
+                                                <td>TB</td>
+                                                <td>HMIS</td>
+                                                <td>30</td>
+                                                <td>John Doe</td>
+                                                <td>Data Transferror</td>
+                                                <td>May 5,2023</td>
+                                                <td><a href="#" class="text-decoration-underline">Success</a></td>
+                                              </tr>
+      
+                                              <tr>
+                                                  <td>2</td>
+                                                  <td>FP</td>
+                                                  <td>JSON</td>
+                                                  <td>Patient</td>
+                                                  <td>Family Planning</td>
+                                                  <td>HMIS</td>
+                                                  <td>20</td>
+                                                  <td>John Doe</td>
+                                                  <td>Data Transferror</td>
+                                                  <td>April 5,2023</td>
+                                                  <td><a href="#" class="text-decoration-underline">Success</a></td>
+                                                </tr>
+      
+                                                <tr>
+                                                  <td>3</td>
+                                                  <td>AIDS</td>
+                                                  <td>JSON</td>
+                                                  <td>Patient</td>
+                                                  <td>AIDS</td>
+                                                  <td>LMIS</td>
+                                                  <td>50</td>
+                                                  <td>John Doe</td>
+                                                  <td>Data Transferror</td>
+                                                  <td>Mar 5,2023</td>
+                                                  <td><a href="#" class="text-decoration-underline">Success</a></td>
+                                                </tr>
+                                             
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                  </div>
+                              </div>
+                             
+                             
+                           
+                          </div>
+                        </div>
+                    </div>
+                  
+                  </div>
+                </div>
+            
+              
+            </div>
+            <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{alert.msg}}
+          </div>
+            
+          </div>
+        </div>
+      </div>
+     
+    </div>
+   
+    
+  </div>

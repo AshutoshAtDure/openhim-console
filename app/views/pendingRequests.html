@@ -1,0 +1,302 @@
+<div class="container-xxl pt-80px imgDiv loginpage">
+    <div ng-show="isLoading" class="loader"></div>
+    <div class="confirmModal hide" id="confirmPopup">
+      <div class="card" style="width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="font-size: 18px;">Reject Registration Request</h3>
+    </div>
+    <div class="modal-body" style="font-size: 16px;">
+      <p>
+        Please provide a reason for rejection.
+      </p>
+      <textarea id="reasonTextBox" style="width: 400px; font-size: 14px; padding: 8px;"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="acceptReject('','reject')">Reject</button>
+        <button class="btn btn-warning" ng-click="acceptReject('','closePopup')">Cancel</button>
+    </div>
+    </div>
+    </div>
+    <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+      HIE Requests & Registrations 
+    </h4>
+    <!-- Basic Layout -->
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="nav-align-top mb-4">
+          <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+              <button
+                type="button"
+                id="pendingBtn"
+                class="nav-link active"
+                role="tab"
+                ng-click="changeActiveTab('pending')"
+              >
+              Pending Requests
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link"
+                id="registeredBtn"
+                role="tab"
+                ng-click="changeActiveTab('registered')"
+              >
+              Subscribers
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link"
+                id="rejectedBtn"
+                role="tab"
+                ng-click="changeActiveTab('rejected')"
+              >
+              Rejected Requests
+              </button>
+             
+            </li>
+            <li>
+              <button
+              type="button"
+              class="nav-link"
+              id="cancelledBtn"
+              role="tab"
+              ng-click="changeActiveTab('cancelled')"
+            >
+              Cancelled Subscribers
+            </button>
+            </li>
+            
+          </ul>
+          <div class="tab-content">
+            <div class="tab-panel active" id="pending" role="tabpanel">
+              <div class="row">
+                  <div class="col-xl-7"></div>
+                  <div class="col-xl-2 addbtnrow justify-content-center">     
+                </div>
+                  <div class="col-xl-3 mb-3">
+                      <div class="input-group input-group-merge">
+                          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                        </div>
+                  </div>
+                 
+              </div>
+              <div class="card mb-0">
+                 
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="table-responsive text-nowrap">
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Org Name</th>
+                                        <th>Registration ID <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>User <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Requested on <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Subscription Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Actions </th>
+                                       
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat="item in users">
+                                        <td>{{ users.indexOf(item) + 1 }}</td>
+                                        <td>
+                                          <a href="">
+                                              {{ item.orgName }}
+                                          </a>
+                                        </td>
+                                        <td>{{ item._id }}</td>
+                                        <td>{{ item.ExistingUser || 'New' }}</td>
+                                        <td>{{ item.updated }}</td>
+                                        <td>{{ item.subscriptionFor[0].for.name || '-' }}</td>
+                                        <td>
+                                          <a href="" class="btn btn-primary text-white mt-0" ng-click="acceptReject(item._id, 'accept')">Accept</a>
+                                          <a href="" class="btn btn-primary text-white mt-0" ng-click="confirmDelete(item._id)">Reject</a>
+                                          <a href="" ng-click="viewUser(item._id, 'pending')" class="btn btn-primary text-white "> View</a>
+                                        </td>
+                                       
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="tab-panel hide" id="registered" role="tabpanel">
+              <div class="row">
+                  <div class="col-xl-7"></div>
+                  <div class="col-xl-2 addbtnrow justify-content-center">
+                </div>
+                  <div class="col-xl-3 mb-3">
+                      <div class="input-group input-group-merge">
+                          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                        </div>
+                  </div>
+              </div>
+              <div class="card mb-0">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="table-responsive text-nowrap">
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Org Name</th>
+                                        <th>Subscription ID <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Date Of Approval <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Subscription Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Actions </th>
+                                       
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat="item in registered">
+                                        <td>{{ registered.indexOf(item) + 1 }}</td>
+                                        <td>
+                                          <a href="">
+                                              {{ item.orgName }}
+                                          </a>
+                                        </td>
+                                        <td>{{ item._id }}</td>
+                                       
+                                        <td>{{ item.updated }}</td>
+                                        <td>{{ item.subscriptionFor[0].for.name || '-' }}</td>
+                                        <td>
+                                          <a href="" ng-click="viewUser(item._id, 'registered')" class="btn btn-primary text-white ">View</a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                          </div>
+                      </div>
+                  
+                  </div>
+                </div>
+            </div>
+            <div class="tab-panel hide" id="rejected" role="tabpanel">
+              <div class="row">
+                  <div class="col-xl-7"></div>
+                  <div class="col-xl-2 addbtnrow justify-content-center">
+                      
+                        
+                      
+                </div>
+                  <div class="col-xl-3 mb-3">
+                      <div class="input-group input-group-merge">
+                          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                        </div>
+                  </div>
+                 
+              </div>
+              <div class="card mb-0">
+                 
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="table-responsive text-nowrap">
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Org Name</th>
+                                        <th>Registration ID <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Date Of Cancellation <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Subscription Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Actions </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat="item in rejected">
+                                        <td>{{ rejected.indexOf(item) + 1 }}</td>
+                                        <td>
+                                          <a href="">
+                                              {{ item.orgName }}
+                                          </a>
+                                        </td>
+                                        <td>{{ item._id }}</td>
+                                        <td>{{ item.updated }}</td>
+                                        <td>{{ item.subscriptionFor[0].for.name || '-' }}</td>
+                                        <td>
+                                          <a href="" ng-click="viewUser(item._id, 'rejected')" class="mt-0">Rejected</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                          </div>
+                      </div>
+                  
+                  </div>
+                </div>
+            </div>
+            <div class="tab-panel hide" id="cancelled" role="tabpanel">
+              <div class="row">
+                  <div class="col-xl-7"></div>
+                  <div class="col-xl-2 addbtnrow justify-content-center">
+                </div>
+                  <div class="col-xl-3 mb-3">
+                      <div class="input-group input-group-merge">
+                          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                          <input type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31">
+                        </div>
+                  </div>
+              </div>
+              <div class="card mb-0">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="table-responsive text-nowrap">
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Org Name</th>
+                                        <th>Registration ID <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Date Of Cancellation <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Subscription Type <i class="menu-icon tf-icons bx bx-sort-alt-2"></i></th>
+                                        <th>Actions</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr ng-repeat="item in cancelled">
+                                        <td>{{ cancelled.indexOf(item) + 1 }}</td>
+                                        <td>{{ item.orgName }}</td>
+                                        <td>{{ item._id }}</td>
+                                        <td>{{ item.expiry }}</td>
+                                        <td>{{ item.subscriptionFor[0].for.name || '-' }}</td>
+                                        <td>
+                                          <a href="" ng-click="viewUser(item._id, 'cancelled')" class="mt-0">Cancelled</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{alert.msg}}
+    </div>
+    </div>
+  </div>

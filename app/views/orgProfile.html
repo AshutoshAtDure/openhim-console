@@ -1,0 +1,629 @@
+ <div class="container-xxl pt-80px imgDiv loginpage">
+      <h4 class="fw-bold py-3 mb-4 mt-4 color-white">
+         Profile
+      </h4>
+      <!-- Basic Layout -->
+      <div class="row">
+        <div class="col-xl-12">
+         
+          <div class="nav-align-top mb-4">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item">
+                <button
+                  type="button"
+                  class="nav-link active"
+                  role="tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#navs-top-home"
+                  aria-controls="navs-top-home"
+                  aria-selected="true"
+                  id="myProfileBtn"
+                  ng-click="changeActiveTab('myProfile')"
+                >
+                  My Profile
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  type="button"
+                  class="nav-link"
+                  role="tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#navs-top-profile"
+                  aria-controls="navs-top-profile"
+                  aria-selected="false"
+                  id="mySubscriptionBtn"
+                  ng-click="changeActiveTab('mySubscription')"
+                >
+                  My Subscription
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  type="button"
+                  class="nav-link hide"
+                  role="tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#navs-top-usermgmt"
+                  aria-controls="navs-top-usermgmt"
+                  aria-selected="false"
+                  id="userAccessManagementBtn"
+                  ng-click="changeActiveTab('userAccessManagement')"
+                >
+                 User Access Management
+                </button>
+              </li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="active" id="navs-top-home" role="tabpanel">
+                <!-- <div class="row">
+                    <div class="col-xl-8"></div>
+                    <div class="col-xl-4 addbtnrow">
+                        <select class="form-select" id="orgtype" aria-label="orgtype">
+                            <option selected>Add New User</option>
+                            <option value="1">Co-Admin</option>
+                            <option value="2">Data Transferror</option>
+                            <option value="3">Auditor</option>
+                          </select>
+                          
+                          <button class="btn btn-primary d-grid" type="submit">Add</button>
+                    </div>
+                </div> -->
+                <div class="card-body scrollable" id="myProfileDiv">
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <p class="subtitle">Organization Name</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].orgName}}</p>
+                        </div>
+      
+                        <div class="col-md-2">
+                          <p class="subtitle">Parent Organization Name</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].parentOrg}}</p>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <p class="subtitle">Registration ID</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0]._id}}</p>
+                        </div>
+      
+                        <div class="col-md-2">
+                          <p class="subtitle">Organization Type</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].orgType}}</p>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <p class="subtitle">Email</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].email}}</p>
+                        </div>
+                        <div class="col-md-2">
+                          <p class="subtitle">Address</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].address}}</p>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <p class="subtitle">First Name</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].firstname}}</p>
+                        </div>
+                        <div class="col-md-2">
+                          <p class="subtitle">Last Name</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].surname}}</p>
+                      </div>
+                    </div>
+                    <div class="row mt-2">
+                        
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <p class="subtitle">City</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].city}}</p>
+                        </div>
+                        <div class="col-md-2">
+                          <p class="subtitle">Province</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>P{{userInfo[0].state}}</p>
+                      </div>
+                    </div>
+      
+                    <div class="row mt-2">
+                      <div class="col-md-2">
+                          <p class="subtitle">Country</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].country}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="subtitle">Zipcode</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].zipcode}}</p>
+                    </div>
+                  </div>
+      
+                  <div class="row mt-2">
+                      <div class="col-md-2">
+                          <p class="subtitle">operational Status</p>
+                      </div>
+                      <div class="col-md-4">
+                          <p>{{userInfo[0].operationalStatus}}</p>
+                      </div>
+                      <div class="col-md-2">
+                        <p class="subtitle">Organisation Registration ID</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{userInfo[0].facilityIdentifier}}</p>
+                    </div>
+                  </div>
+      
+                  
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Registration Date</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].regDate}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">Purpose of Use</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].purpose}}</p>
+                        </div>
+                      </div>
+                  
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Target Program</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].target.name}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">Subscription For</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{ userInfo[0].subscriptionFor[0].for.name || '-' }}</p>
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Resource Type</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].resourceType.name}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">Additional Info</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].additionalInfo}}</p>
+                        </div>
+                      </div>
+      
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Types of services offered</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].typeOfServices}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">Human resources for health</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].humanResource}}</p>
+                        </div>
+                      </div> 
+      
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Opening Time</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].openingTime}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">Closing Time</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].closingTime}}</p>
+                        </div>
+                      </div> 
+      
+                      <div class="row mt-2">
+                          <div class="col-md-2">
+                              <p class="subtitle">Common and Mapped Identifiers</p>
+                          </div>
+                          <div class="col-md-4">
+                              <p>{{userInfo[0].indentifiers}}</p>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="subtitle">details of Infrastructure</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>{{userInfo[0].details}}</p>
+                        </div>
+                      </div> 
+                  
+                </div>
+                
+              </div>
+              <div class="hide" id="mySubscriptionDiv" role="tabpanel">
+                <div class="card mb-0">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">Manage Subscription</h5>
+                      
+                    </div>
+                    <div class="card-body">
+                        <div class="row m-0 ">
+                            <div class="col-lg-6 borderrightdiv">
+                                <div class="row subcriptionidrow">
+                                    <div class="col-lg-3">
+                                        <p class="subtitle">Subscription ID:</p>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="subnumber">{{userDetails.orgId}}</p>
+                                    </div>
+                                </div>
+                                <p class="subtitle mt-4">My Subscriptions</p>
+                                <div>
+                                    <div class="row gy-3">
+                                        <div class="col-md">
+                                         <div class="row mb-2">
+                                            <div class="col-md-9">
+                                                <div class="form-check mt-0">
+                                                    <input class="form-check-input"  key="649d8dd5dc3f428709eee141" type="checkbox" value="649d8dd5dc3f428709eee141" id="hiu" />
+                                                    <label class="form-check-label"  for="hiu"> Data Exchange - Health Information User </label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <!-- <div class="form-check form-switch mb-0">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                                  </div> -->
+                                                  <p id="hiuActive" class="color-green mb-0 text-decoration-underline hide">Active</p>
+                                                  <p id="hiuInActive" class="color-red mb-0 text-decoration-underline hide">Inactive</p>
+                                            </div>
+                                         </div>
+                                         <div class="row mb-2">
+                                            <div class="col-md-9">
+                                                <div class="form-check mt-0">
+                                                    <input  class="form-check-input" key="649d8dd5dc3f428709eee140" type="checkbox" value="649d8dd5dc3f428709eee140" id="hip" />
+                                                    <label  class="form-check-label" for="hip"> Data Exchange - Health Information Provider </label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <!-- <div class="form-check form-switch mb-0">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                                   
+                                                  </div> -->
+                                                  <p id="hipActive" class="color-green mb-0 text-decoration-underline hide">Active</p>
+                                                  <p id="hipInActive" class="color-red mb-0 text-decoration-underline hide">Inactive</p>
+                                            </div>
+                                         </div>
+
+                                         <div class="row mb-2">
+                                            <div class="col-md-9">
+                                                <div class="form-check mt-0">
+                                                    <input class="form-check-input" key="649d8dd5dc3f428709eee142" type="checkbox" value="649d8dd5dc3f428709eee142" id="dashboard" />
+                                                    <label class="form-check-label" for="dashboard"> Dashboard </label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <!-- <div class="form-check form-switch mb-0">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                                   
+                                                  </div> -->
+                                                  <p id="dashboardActive" class="color-green mb-0 text-decoration-underline hide">Active</p>
+                                                  <p id="dashboardInActive" class="color-red mb-0 text-decoration-underline hide">Inactive</p>
+                                            </div>
+                                         </div>
+                                         <div class="mt-3">
+                                            <p>
+                                                <button class="btn btn-primary d-grid" type="button" ng-click="updateSubscription()">Request for update</button>
+                                            </p>
+                                         </div>
+                                        </div>
+                                       
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                <!-- <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <p class="subtitle">Resource Type</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Indicator</p>
+                                    </div>
+                                </div>
+                                <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <p class="subtitle">Program Type</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>TB, Maternal Health</p>
+                                    </div>
+                                </div> -->
+                                <div class="row mb-4 px-3">
+                                  <div class="col-md-3">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <p class="subtitle mb-2">Program Type</p>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <select class="form-select" id="programId" aria-label="">
+                                                  <option selected="">Please Select</option>
+                                                  <option ng-repeat="item in programs"  value="{{item._id}}" >{{ item.name }}</option>
+                                                </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <p class="subtitle mb-2">Source System</p>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <select class="form-select" id="sourceId" aria-label="">
+                                                  <option selected="">Please Select</option>
+                                                  <option ng-repeat="item in sourceSystems"  value="{{item._id}}" >{{ item.name }}</option>
+                                                </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="subtitle mb-2">Resource Type</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <select class="form-select" id="resourceId" aria-label="">
+                                                <option selected="">Please Select</option>
+                                                <option ng-repeat="item in resourceTypes"  value="{{item._id}}" >{{ item.name }}</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <a href="" class="btn btn-primary mt-0" ng-click="addSubscription()" >
+                                                
+                                            Add</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                                <div class="row px-3">
+                                  <div class="col-md-12">
+                                    <div class="table-responsive text-nowrap">
+                                      <table class="table table-bordered">
+                                        <thead>
+                                          <tr>
+                                            <th>Program Type</th>
+                                            <th>Source System</th>
+                                            <th>Resource Type</th>
+                                           
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="item in subscriptions">
+                                            <td>{{ item.programName }}</td>
+                                            <td>{{ item.sourceName }}</td>
+                                            <td>{{ item.resourceName }}</td>
+                                          <!-- <a class="color-red mb-0 text-decoration-underline" style="float: right;" ng-click="removeSubscription(item)">Delete</a> -->
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                  </div>
+              </div>
+              <div class="hide" id="userAccessManagementDiv" role="tabpanel">
+                <div class="card mb-0">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">Add New User</h5>
+                      
+                    </div>
+                    <div class="card-body">
+                        <div class="row m-0 ">
+                            <div class="col-lg-6 borderrightdiv">
+                               
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="mb-3">
+                                      <label class="form-label" for="firstname">First Name<sup>*</sup></label>
+                                      <input type="text" class="form-control" id="firstname" placeholder="">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="mb-3">
+                                      <label class="form-label" for="lastname">Last Name<sup>*</sup></label>
+                                      <input type="text" class="form-control" id="lastname" placeholder="">
+                                    </div>
+                                  </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-lg-6">
+                                      <div class="mb-3">
+                                        <label class="form-label" for="email">Email</label>
+                                        <div class="input-group input-group-merge">
+                                          <input type="text" id="email" class="form-control" placeholder="" aria-label="" aria-describedby="email">
+                                         
+                                        </div>
+                                    </div>
+                                    </div>
+                
+                                    <div class="col-lg-6">
+                                      <div class="mb-3">
+                                        <label class="form-label" for="orgtype">Role<sup>*</sup></label>
+                                        <select class="form-select" id="orgtype" aria-label="orgtype">
+                                          <option selected="">Please Select</option>
+                                          <option value="1">Co-Admin</option>
+                                          <option value="2">Data Transferror</option>
+                                          <option value="3">Auditor</option>
+                                        </select>
+                                       
+                                      </div>
+                                    </div>
+                                    </div>
+                              
+                                <div>
+                                    <div class="row gy-3">
+                                        <div class="col-md">
+                                         
+                                        
+                                        
+                                         <div class="mt-3">
+                                            <p>
+                                                <button class="btn btn-primary d-grid" type="submit">Assign</button>
+                                            </p>
+                                         </div>
+                                         
+
+                                         
+                                        
+                                         
+                                         
+                                        </div>
+                                       
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                <!-- <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <p class="subtitle">Resource Type</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Indicator</p>
+                                    </div>
+                                </div>
+                                <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <p class="subtitle">Program Type</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>TB, Maternal Health</p>
+                                    </div>
+                                </div> -->
+                                <p class="subtitle mt-0 px-3">Role Description</p>
+                                <div class="row mb-4 px-3 mx-1">
+                                  <ul>
+                                    <li>Co-Admin : Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Data Transferror : Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                    <li>Auditor : Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                                  </ul>
+                                </div>
+                                
+                               
+                                <!-- <div class="row px-3 mt-3">
+                                  <div class="col-md-6">
+                                      <p class="subtitle">Purpose of Use</p>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <p>To participate in Health Information exchange.</p>
+                                  </div>
+                              </div> -->
+                                <!-- <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <p class="subtitle">Any Additional Information</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p></p>
+                                    </div>
+                                </div> -->
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 mt-3 border-top-grey pt-4 pb-4">
+                          <div class="col-md-6">
+                            <div class="row px-0">
+                              <div class="col-md-12">
+                                <p class="subtitle mt-0 px-0">Existing Users</p>
+                                <div class="table-responsive text-nowrap">
+                                  <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                       
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Amar Singh</td>
+                                        <td>Auditor</td>
+                                        <td> <span class="color-red mb-0 text-decoration-underline">Delete</span></td>
+                                      
+                                      </tr>
+                                      <tr>
+                                        <td>John Doe</td>
+                                        <td>Auditor</td>
+                                        <td> <span class="color-red mb-0 text-decoration-underline">Delete</span></td>
+                                      </tr>
+                                      <tr>
+                                        <td>John Doe</td>
+                                        <td>Auditor</td>
+                                        <td> <span class="color-red mb-0 text-decoration-underline">Delete</span></td>
+                                      </tr>
+                                     
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                    
+                    </div>
+                  </div>
+              </div>
+              <div class="alert alert-{{alert.type}} alert-dismissible mt-2" role="alert" ng-repeat="alert in alerts.bottom">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{alert.msg}}
+            </div>
+              
+            </div>
+          </div>
+        </div>
+       
+      </div>
+     
+      
+    </div>

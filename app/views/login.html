@@ -1,0 +1,100 @@
+<div class="container-xxl p-0 imgDiv loginpage">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="row w-100">
+      <div class="col-md-6">
+        <img src="./../images/mohlogo.png" class="img-fluid" style="height: 100px;">
+       
+      </div>
+      <div class="col-md-6 text-right" style="text-align: right;">
+       
+      </div>
+    </div>
+    <div class="authentication-inner">
+      <div class="card">
+        <div class="card-body" ng-show="!rootPasswordReset">
+          <div class="app-brand justify-content-center">
+            <p href="index.html" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
+               <img src="../images/Group 208.png">
+              </span>
+              <span class="app-brand-text demo text-body fw-bolder" style="display:none;">OneData Connect</span>
+            </p>
+          </div>
+          <h6>Sign In</h6>
+          <form ng-submit="validateLogin()" ng-show="config.showLoginForm">
+            <input class="form-control mb-3" type="text" ng-model="loginEmail" placeholder="E-mail address" focus="{{emailFocus}}">
+            <input class="form-control mb-3" type="password" ng-model="loginPassword" placeholder="Password" focus="{{passwordFocus}}">
+            <div class="loginBoxLink">
+              <a href="#!/forgot-password/{{ linkUserEmail }}">Forgot your password?</a>
+            </div>
+            <div class="action">
+              <input type="submit" class="btn btn-primary text-white d-grid w-100 signup" value="Login" />
+            </div>
+            <div class="mt-2">
+              To create a new account, <a href="#!/registration">register here</a>. For OneData Connect admin account please contact (contact@avenir).  Avenir is happy to assist.
+            </div>
+          </form>
+          <div ng-show="config.ssoEnabled">
+            <hr/>
+            <button ng-click="signInWithKeyCloak()" class="btn btn-primary">
+              <i class="glyphicon glyphicon-lock"></i>
+              Sign-In with KeyCloak
+            </button>
+          </div>
+          <hr/>
+          <!-- Login Alerts -->
+          <div uib-alert ng-repeat="alert in alerts.login" ng-class="'alert-' + (alert.type || 'warning')">{{alert.msg}}</div>
+          <!-- Login Alerts -->
+
+          <!-- Server Alerts -->
+          <div uib-alert ng-repeat="alert in alerts.server" ng-class="'alert-' + (alert.type || 'warning')">{{alert.msg}}</div>
+          <!-- Server Alerts -->
+          <div ng-show="!config.ssoEnabled && !config.showLoginForm" class="alert alert-danger">
+            Login is not enabled. Please contact your system administrator.
+          </div>    
+        </div>
+
+
+        <div class="content-wrap" ng-show="rootPasswordReset">
+          <h6>Root Password Reset</h6>
+          <p><u><strong>Please change your default root password!</strong></u></p>
+          <form ng-submit="resetRootPassword()">
+            <input ng-show="!resetSuccess" class="form-control" type="password" ng-model="password" placeholder="New Password" focus="true">
+            <input ng-show="!resetSuccess" class="form-control" type="password" ng-model="passwordConfirm" placeholder="Confirm Password">
+
+            <!-- Login Alerts -->
+            <div uib-alert ng-repeat="alert in alerts.login" ng-class="'alert-' + (alert.type || 'warning')">{{alert.msg}}</div>
+            <!-- Login Alerts -->
+
+            <!-- Server Alerts -->
+            <div uib-alert ng-repeat="alert in alerts.server" ng-class="'alert-' + (alert.type || 'warning')">{{alert.msg}}</div>
+            <!-- Server Alerts -->
+
+            <div class="action" ng-show="!resetSuccess">
+              <input type="submit" class="btn btn-primary signup" value="RESET" />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div ng-if="coreConnectionError" class="alert alert-danger" style="padding: 10px; margin: 15px 10%;">
+          An error occurred while attempting to connect to the OpenHIM Core on https://{{config.host}}:{{config.port}}.<br><br>
+          The service may not be running or may not be accessible from you current location.<br><br>
+          Additionally if Core is using a self-signed certificate, you may first need to instruct your browser to accept it. You can do so by accessing the following <a target="_blank" href="https://{{config.host}}:{{config.port}}/heartbeat">link</a>.<br><br>
+          Please contact your system administrator if the error persists or if the service was not accessible using the above link.
+      </div>
+
+      <div ng-if="loginBanner" class="box" ng-bind-html="loginBanner" style="padding: 10px; margin: 15px 10%;"></div>
+
+    </div>
+    <div class="row w-100">
+      <div class="col-md-6">
+        <img src="./../images/billlogo.png" class="img-fluid" style="height: 50px;">
+        <img src="./../images/track20logo.png" class="img-fluid" style="height: 50px;margin-left: 20px;">
+      </div>
+      <div class="col-md-6 text-right" style="text-align: right;">
+        <img src="./../images/dtlogo.png" class="img-fluid" style="height: 50px;">
+      </div>
+    </div>
+  </div>
+</div>
